@@ -10,3 +10,10 @@ early_stopping:
 
 model:
   path: models/best_model.h5
+
+data:
+  path: Data/features_30_sec.csv
+
+features:
+  input_dim: 58
+  num_classes: 10
