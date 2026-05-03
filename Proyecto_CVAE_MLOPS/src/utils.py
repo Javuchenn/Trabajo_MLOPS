@@ -13,6 +13,9 @@ from tensorflow.keras.utils import to_categorical
 from pathlib import Path
 import yaml
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 # =========================================
 # ARGUMENTOS DE ENTRADA CON YAML
@@ -23,6 +26,7 @@ def get_project_folder() -> Path:
     return raiz_proyecto
 
 def load_config(filename: str) -> dict:
+    logger.info("Cargando la configuración.")
     fichero_configuracion = get_project_folder() / "config" / filename
     with open(fichero_configuracion, "r") as fichero:
         return yaml.safe_load(fichero)
@@ -60,6 +64,7 @@ def plot_training_history_classification(history, title="Training History"):
     
     plt.tight_layout()
     plt.show()
+    print("\n\n")
 
 def evaluate_classifier(model, X_test, y_test, class_names, model_name="Model"):
     """Comprehensive classifier evaluation."""
@@ -67,14 +72,16 @@ def evaluate_classifier(model, X_test, y_test, class_names, model_name="Model"):
     pred = np.argmax(pred_probs, axis=1)
     
     acc = accuracy_score(y_test, pred)
-    
-    print(f"\n{'='*60}")
-    print(f"{model_name} Evaluation")
-    print(f"{'='*60}")
-    print(f"Accuracy: {acc:.4f} ({acc*100:.2f}%)")
-    print(f"{'='*60}\n")
-    print(classification_report(y_test, pred, target_names=class_names))
-    
+
+    logger.info("\n\nIniciando la evaluación...")
+
+    logger.info(f"\n{'='*60}")
+    logger.info(f"{model_name} Evaluation")
+    logger.info(f"{'='*60}")
+    logger.info(f"Accuracy: {acc:.4f} ({acc*100:.2f}%)")
+    logger.info(f"{'='*60}\n")
+    logger.info(classification_report(y_test, pred, target_names=class_names))
+    logger.info("\n\n")
     return {'Accuracy': acc, 'Predictions': pred, 'Probabilities': pred_probs}
 
 
@@ -142,22 +149,17 @@ def one_hot_encode(y_train, y_val, y_test, num_classes):
     return y_train, y_val, y_test
 
 def prepare_data(path, seed=42):
+
+    logger.info("Cargando el dataset.")
+
     df = load_data(path)
-
     target_col = 'label' if 'label' in df.columns else 'genre'
-
     df, feature_cols = clean_dataframe(df, target_col)
-
     X, y = split_features_target(df, feature_cols, target_col)
-
     y, le, num_classes = encode_labels(y)
-
     X_train, X_val, X_test, y_train, y_val, y_test = split_data(X, y, seed)
-
     X_train, X_val, X_test, scaler = scale_data(X_train, X_val, X_test)
-
     y_train, y_val, y_test = one_hot_encode(y_train, y_val, y_test, num_classes)
-
     input_dim = X_train.shape[1]
 
     return {
