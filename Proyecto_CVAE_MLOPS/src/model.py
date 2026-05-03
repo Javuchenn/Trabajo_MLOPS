@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def build_model(input_dim, num_classes):
-    logger.info("Construyendo modelo...")
+    logger.info("Construyendo modelo.")
     model = Sequential([
         layers.Input(shape=(input_dim,)),
 
