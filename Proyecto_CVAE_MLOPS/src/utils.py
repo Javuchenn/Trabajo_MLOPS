@@ -162,6 +162,8 @@ def prepare_data(path, seed=42):
     y_train, y_val, y_test = one_hot_encode(y_train, y_val, y_test, num_classes)
     input_dim = X_train.shape[1]
 
+    logger.info("Dataset cargado.")
+
     return {
         "X_train": X_train,
         "X_val": X_val,

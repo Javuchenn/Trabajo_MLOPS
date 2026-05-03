@@ -1,12 +1,12 @@
 import tensorflow as tf
 from tensorflow.keras import layers, regularizers
 from tensorflow.keras.models import Sequential
+import logging
 
+logger = logging.getLogger(__name__)
 
-# =========================================
-# MODELO: arch_3_3_L21_ADAM1_FINAL
-# =========================================
 def build_model(input_dim, num_classes):
+    logger.info("Construyendo modelo...")
     model = Sequential([
         layers.Input(shape=(input_dim,)),
 
@@ -80,4 +80,6 @@ def build_model(input_dim, num_classes):
         metrics=['accuracy']
     )
 
+    logger.info("Modelo construido.")
+    
     return model

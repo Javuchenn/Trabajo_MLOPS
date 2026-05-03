@@ -57,7 +57,7 @@ def main():
     # =========================================
 
     class_names = data.get("label_encoder").classes_
-    results = evaluate_classifier(model, X_test, y_test, class_names, "Music Genre")
+    evaluate_classifier(model, X_test, y_test, class_names, "Music Genre")
     plot_training_history_classification(history)
 
     logger.info("\n\nEJECUCIÓN TERMINADA.\n")

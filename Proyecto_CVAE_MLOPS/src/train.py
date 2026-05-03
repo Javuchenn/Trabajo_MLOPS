@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 def train_model(model, X_train, y_train, X_val, y_val, epochs, batch_size, shuffle, early_stopping_patience, early_stopping_monitor, model_path):
 
-    logger.info("Iniciando entrenamiento")
+    logger.info("Iniciando entrenamiento.")
     logger.info(f"Epochs: {epochs} | Batch size: {batch_size}")
 
     early_stop = EarlyStopping(
@@ -34,6 +34,6 @@ def train_model(model, X_train, y_train, X_val, y_val, epochs, batch_size, shuff
         callbacks=[early_stop, checkpoint]
     )
 
-    logger.info("Entrenamiento finalizado")
+    logger.info("Entrenamiento finalizado.")
 
     return model, history
