@@ -44,7 +44,29 @@ El modelo fue entrenado con un dataset de audio donde cada fila contiene caracte
 Importante:
 La API NO realiza extracción ni preprocesado de características.
 La entrada debe coincidir exactamente con el formato usado en el entrenamiento.
+
+
+##############################
+CÓMO PROBAR LA API EN LOCAL:
+##############################
+Para ejecutar la API en entorno local, se debe lanzar el servidor FastAPI con Uvicorn usando
+el comando: $ uvicorn src.api_inference:app --host 0.0.0.0 --port 8000.
+Una vez iniciado, la API quedará disponible en http://localhost:8000, donde se puede probar
+el endpoint /predict enviando una lista de features en formato JSON. También se puede acceder
+a la documentación automática en http://localhost:8000/docs.
+
+
+############################################################
+DESPLIEGUE Y ENDPOINT EN PRODUCCIÓN:
+############################################################
+Para obtener un endpoint accesible desde fuera del entorno local (producción), la API se desplegará
+en un servicio cloud o servidor (por ejemplo Render, Railway, AWS o Docker en una VM).
+En ese caso, Uvicorn se ejecutará escuchando en 0.0.0.0:8000, lo que permite exponer el servicio a Internet.
+La URL final del endpoint será la proporcionada por la plataforma de despliegue (por ejemplo https://mi-api.onrender.com/predict),
+y será la que se incluya en la entrega como “endpoint en producción”.
+
 """
+
 
 import numpy as np
 import tensorflow as tf

@@ -9,7 +9,7 @@ from utils import get_project_folder
         CRITICAL
         ERROR
         WARNING
-        INGO
+        INFO
         DEBUG
 """
 

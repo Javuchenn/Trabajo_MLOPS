@@ -26,7 +26,7 @@ def get_project_folder() -> Path:
     return raiz_proyecto
 
 def load_config(filename: str) -> dict:
-    logger.info("Cargando la configuración.")
+    logger.info("Cargando la configuracion.")
     fichero_configuracion = get_project_folder() / "config" / filename
     with open(fichero_configuracion, "r") as fichero:
         return yaml.safe_load(fichero)
@@ -70,18 +70,22 @@ def evaluate_classifier(model, X_test, y_test, class_names, model_name="Model"):
     """Comprehensive classifier evaluation."""
     pred_probs = model.predict(X_test, verbose=0)
     pred = np.argmax(pred_probs, axis=1)
-    
+
+    # 🔧 FIX MÍNIMO: convertir one-hot a clases
+    if len(y_test.shape) > 1:
+        y_test = np.argmax(y_test, axis=1)
+
     acc = accuracy_score(y_test, pred)
 
-    logger.info("\n\nIniciando la evaluación...")
+    logger.info("Iniciando la evaluacion...")
 
-    logger.info(f"\n{'='*60}")
+    logger.info(f"{'='*60}")
     logger.info(f"{model_name} Evaluation")
     logger.info(f"{'='*60}")
     logger.info(f"Accuracy: {acc:.4f} ({acc*100:.2f}%)")
     logger.info(f"{'='*60}\n")
     logger.info(classification_report(y_test, pred, target_names=class_names))
-    logger.info("\n\n")
+
     return {'Accuracy': acc, 'Predictions': pred, 'Probabilities': pred_probs}
 
 
