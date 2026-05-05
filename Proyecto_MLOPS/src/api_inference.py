@@ -108,7 +108,7 @@ async def lifespan(app: FastAPI):
         "rock"
     ]
 
-    app.state.input_dim = model.input_shape[1]  # XXXXXXXXXXXX
+    app.state.input_dim = model.input_shape[1]
 
     yield
 
