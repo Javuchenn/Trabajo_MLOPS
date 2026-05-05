@@ -55,15 +55,7 @@ Una vez iniciado, la API quedará disponible en http://localhost:8000, donde se 
 el endpoint /predict enviando una lista de features en formato JSON. También se puede acceder
 a la documentación automática en http://localhost:8000/docs.
 
-
-############################################################
-DESPLIEGUE Y ENDPOINT EN PRODUCCIÓN:
-############################################################
-Para obtener un endpoint accesible desde fuera del entorno local (producción), la API se desplegará
-en un servicio cloud o servidor (por ejemplo Render, Railway, AWS o Docker en una VM).
-En ese caso, Uvicorn se ejecutará escuchando en 0.0.0.0:8000, lo que permite exponer el servicio a Internet.
-La URL final del endpoint será la proporcionada por la plataforma de despliegue (por ejemplo https://mi-api.onrender.com/predict),
-y será la que se incluya en la entrega como “endpoint en producción”.
+Leer el readme del proyecto para mas informacion.
 
 """
 
@@ -75,14 +67,14 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
 
-from src.utils import load_config, get_project_folder
+from pathlib import Path
 
 # =========================================
 # RUTAS
 # =========================================
-PROJECT_ROOT = get_project_folder()
-MODEL_PATH = PROJECT_ROOT / "models" / "best_model.h5"
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "models" / "best_model.keras"
 
 # =========================================
 # INPUT DE LA API
@@ -116,6 +108,8 @@ async def lifespan(app: FastAPI):
         "rock"
     ]
 
+    app.state.input_dim = model.input_shape[1]  # XXXXXXXXXXXX
+
     yield
 
 
@@ -134,7 +128,18 @@ app = FastAPI(
 @app.post("/predict")
 def predict(data: MusicInput):
 
+    # VALIDACIÓN CRÍTICA
+    if len(data.features) != app.state.input_dim:
+        return {
+            "error": "Invalid feature size",
+            "expected": app.state.input_dim,
+            "received": len(data.features)
+        }
+
     x = np.array(data.features, dtype=np.float32).reshape(1, -1)
+
+    # DEBUG SHAPE
+    print("INPUT SHAPE:", x.shape)
 
     probs = app.state.model.predict(x, verbose=0)
     pred = int(np.argmax(probs, axis=1)[0])
