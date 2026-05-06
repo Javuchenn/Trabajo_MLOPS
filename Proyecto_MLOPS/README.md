@@ -11,23 +11,22 @@ Autor: Javier Díaz-Cano Rincón.
 ****************************************************************************************************************
 ****************************************************************************************************************
 
-##################################
-##################################
+
+---
+
+
+
+**********************************
 PROYECTO EN GITHUB
-##################################
-##################################
+**********************************
 
 El enlace para acceder al repositorio del proyecto es el siguiente: "https://github.com/Javuchenn/Trabajo_MLOPS"
 
+---
 
-
-
-
-##################################
-##################################
+**********************************
 FUNCIONALIDADES
-##################################
-##################################
+**********************************
 
 Este proyecto implementa un sistema completo de Machine Learning para la clasificación de géneros musicales a partir de características numéricas extraídas de audio. Incluye todo el flujo end-to-end, desde la preparación de datos hasta el despliegue de una API de inferencia.
 
@@ -47,16 +46,11 @@ También hay disponibles tests automatizados implementados con `pytest` para gar
 
 Finalmente, se expone una API de inferencia desarrollada con FastAPI que permite realizar predicciones en tiempo real. Esta API incluye un endpoint `/predict` que recibe un vector de características y devuelve la clase predicha, el género musical asociado y las probabilidades de cada clase. La API puede ejecutarse tanto en entorno local como mediante Docker, manteniendo el mismo comportamiento funcional en ambos casos.
 
+---
 
-
-
-
-
-##############################################################################
-##############################################################################
+******************************************************************************************************
 LANZAMIENTO DEL PROYECTO PARA UN ENTORNO LOCAL DE DESARROLLO
-##############################################################################
-##############################################################################
+******************************************************************************************************
 
 Para ejecutar el proyecto en local, primero se debe levantar la API FastAPI. Esto se hace desde la raíz del proyecto utilizando el comando `uvicorn src.api_inference:app --reload`. Este comando inicia el servidor en modo desarrollo y permite la recarga automática cada vez que se modifica el código.
 
@@ -97,15 +91,11 @@ Una vez enviado el request pulsando “Execute”, la API procesa la petición y
 
 Es importante tener en cuenta que el vector de entrada debe contener exactamente 58 features, en el mismo orden utilizado durante el entrenamiento del modelo. Si el número de features no coincide, la API devolverá un error de validación.
 
+---
 
-
-
-
-####################################################################################
-####################################################################################
+******************************************************************************************************
 LANZAMIENTO DEL PROYECTO PARA UN ENTORNO LOCAL DE DESARROLLO **UTILIZANDO DOCKER**
-####################################################################################
-####################################################################################
+******************************************************************************************************
 
 Para ejecutar el proyecto utilizando Docker, primero es necesario construir la imagen a partir del `Dockerfile` incluido en el repositorio. Esto se realiza ejecutando el comando "docker build -t mlops-api ." desde la raíz del proyecto.
 
@@ -115,27 +105,19 @@ Cuando el contenedor esté en ejecución, la API estará disponible en `http://l
 
 NOTA: Es necesario tener Docker Desktop abierto y en ejecución antes de lanzar los comandos de Docker, ya que el servicio Docker Engine debe estar activo para poder construir y ejecutar contenedores.
 
+---
 
-
-
-
-##################################
-##################################
+**********************************
 PROYECTO EN WEIGHT AND BIASES
-##################################
-##################################
+**********************************
 
 Se ha añadido una invitación al profesor de la asignatura (antonio.gpardo@urjc.es) al TEAM de Weights & Biases "diazcanorinconjavier3a-universidad-polit-cnica-de-madrid", donde se encuentra centralizado el proyecto. El acceso permite visualizar los experimentos, métricas, configuraciones de entrenamiento y resultados generados durante el desarrollo del modelo dentro del workspace compartido. Por lo tanto, el profesor sólo debe acceder desde su correo al enlace "https://wandb.ai/diazcanorinconjavier3a-universidad-polit-cnica-de-madrid/MLOPS_Project?nw=nwuserdiazcanorinconjavier3a"
 
+---
 
-
-
-
-###################################################
-###################################################
+********************************************************************
 ENDPOINT ACCESIBLE CON EL SERVICIO EN PRODUCCIÓN
-###################################################
-###################################################
+********************************************************************
 
 En este proyecto no se ha realizado un despliegue en un entorno cloud (como AWS, GCP o Azure). La razón principal es que el objetivo de la asignatura ha sido centrarse en las buenas prácticas de MLOps a nivel de desarrollo, experimentación y estructuración del proyecto, incluyendo el entrenamiento del modelo, la creación de una API de inferencia y la contenedorización básica.
 
