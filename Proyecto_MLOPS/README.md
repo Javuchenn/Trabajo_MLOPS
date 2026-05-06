@@ -47,7 +47,9 @@ También hay disponibles tests automatizados implementados con `pytest` para gar
 
 Finalmente, se expone una API de inferencia desarrollada con FastAPI que permite realizar predicciones en tiempo real. Esta API incluye un endpoint `/predict` que recibe un vector de características y devuelve la clase predicha, el género musical asociado y las probabilidades de cada clase. La API puede ejecutarse tanto en entorno local como mediante Docker, manteniendo el mismo comportamiento funcional en ambos casos.
 
----
+.
+
+.
 
 ******************************************************************************************************
 LANZAMIENTO DEL PROYECTO PARA UN ENTORNO LOCAL DE DESARROLLO
@@ -92,7 +94,9 @@ Una vez enviado el request pulsando “Execute”, la API procesa la petición y
 
 Es importante tener en cuenta que el vector de entrada debe contener exactamente 58 features, en el mismo orden utilizado durante el entrenamiento del modelo. Si el número de features no coincide, la API devolverá un error de validación.
 
----
+.
+
+.
 
 ******************************************************************************************************
 LANZAMIENTO DEL PROYECTO PARA UN ENTORNO LOCAL DE DESARROLLO **UTILIZANDO DOCKER**
@@ -106,7 +110,9 @@ Cuando el contenedor esté en ejecución, la API estará disponible en `http://l
 
 NOTA: Es necesario tener Docker Desktop abierto y en ejecución antes de lanzar los comandos de Docker, ya que el servicio Docker Engine debe estar activo para poder construir y ejecutar contenedores.
 
----
+.
+
+.
 
 **********************************
 PROYECTO EN WEIGHT AND BIASES
@@ -114,7 +120,9 @@ PROYECTO EN WEIGHT AND BIASES
 
 Se ha añadido una invitación al profesor de la asignatura (antonio.gpardo@urjc.es) al TEAM de Weights & Biases "diazcanorinconjavier3a-universidad-polit-cnica-de-madrid", donde se encuentra centralizado el proyecto. El acceso permite visualizar los experimentos, métricas, configuraciones de entrenamiento y resultados generados durante el desarrollo del modelo dentro del workspace compartido. Por lo tanto, el profesor sólo debe acceder desde su correo al enlace "https://wandb.ai/diazcanorinconjavier3a-universidad-polit-cnica-de-madrid/MLOPS_Project?nw=nwuserdiazcanorinconjavier3a"
 
----
+.
+
+.
 
 ********************************************************************
 ENDPOINT ACCESIBLE CON EL SERVICIO EN PRODUCCIÓN
