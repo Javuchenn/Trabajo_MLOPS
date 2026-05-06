@@ -22,7 +22,7 @@ PROYECTO EN GITHUB
 
 El enlace para acceder al repositorio del proyecto es el siguiente: "https://github.com/Javuchenn/Trabajo_MLOPS"
 
----
+...
 
 **********************************
 FUNCIONALIDADES
